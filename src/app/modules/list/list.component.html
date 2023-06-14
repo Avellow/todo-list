@@ -1,0 +1,5 @@
+<ul class="list">
+  <li *ngFor="let task of taskService.tasks" class="item">
+    <app-task [task]="task" (remove)="remove(task)"></app-task>
+  </li>
+</ul>
