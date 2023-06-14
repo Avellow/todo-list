@@ -19,4 +19,8 @@ export class ListComponent {
       ? this.taskService.changeStatus(task, 'common')
       : this.taskService.changeStatus(task, 'done')
   }
+
+  handleTaskAdd(task: ITask): void {
+    this.taskService.addTask(task);
+  }
 }

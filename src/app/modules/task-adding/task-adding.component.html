@@ -1,0 +1,40 @@
+<h2 class="title">Добавьте задачу</h2>
+<form class="form" #myForm="ngForm" (submit)="submitAdding(myForm)" novalidate>
+  
+  <input 
+    type="text" 
+    id="description" 
+    name="description"
+    placeholder="Описание"
+    ngModel
+    required
+  >
+
+  <div class="statuses">
+    <label for="common">
+      <input
+      id="common"
+      type="radio"
+      value="common"
+      name="status"
+      ngModel
+      required
+    >
+      Обычная
+    </label>
+
+    <label for="important">
+      <input
+        id="important"
+        type="radio"
+        value="important"
+        name="status"
+        ngModel
+        required
+      >
+      Важная
+    </label>
+  </div>
+
+    <button type="submit" [disabled]="!myForm.valid">Добавить</button>
+</form>

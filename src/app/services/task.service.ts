@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-type TaskStatus = 'common' | 'important' | 'done';
+export type TaskStatus = 'common' | 'important' | 'done';
 
 export interface ITask {
   status: TaskStatus;
