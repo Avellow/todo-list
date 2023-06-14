@@ -1,9 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-
-export interface ITask {
-  status: 'common' | 'important' | 'done';
-  description: string;
-}
+import { ITask } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task',
