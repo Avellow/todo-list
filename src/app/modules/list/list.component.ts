@@ -13,4 +13,10 @@ export class ListComponent {
   remove(taskToRemove: ITask) {
     this.taskService.removeTask(taskToRemove);
   }
+
+  handleTaskCheck(task: ITask): void {
+    task.status == 'done' 
+      ? this.taskService.changeStatus(task, 'common')
+      : this.taskService.changeStatus(task, 'done')
+  }
 }

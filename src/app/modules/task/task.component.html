@@ -6,7 +6,7 @@
   <input
     type="checkbox" 
     [id]="task.description" 
-    (change)="handleCheck()" 
+    (change)="check.emit()" 
     [checked]="task.status == 'done'" 
   />
   

@@ -10,13 +10,6 @@ export class TaskComponent {
   
   @Input() task!: ITask;
   @Output() remove = new EventEmitter<ITask>;
+  @Output() check = new EventEmitter<ITask>;
 
-  constructor(public taskService: TaskService) {}
-
-  handleCheck():void {
-    this.task.status == 'done' 
-      ? this.taskService.changeStatus(this.task, 'common')
-      : this.taskService.changeStatus(this.task, 'done')
-  }
-  
 }
