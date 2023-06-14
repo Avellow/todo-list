@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ITask, TaskService } from 'src/app/services/task.service';
+import { Component, Output } from '@angular/core';
+import { IFilter, ITask, StatusFilter, TaskService } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-list',
@@ -22,5 +22,13 @@ export class ListComponent {
 
   handleTaskAdd(task: ITask): void {
     this.taskService.addTask(task);
+  }
+
+  filterByDescription(desc: string) {
+    this.taskService.changeFilter({ byDescription: desc });
+  }
+
+  filterByStatus(status: StatusFilter) {
+    this.taskService.changeFilter({ byStatus: status });
   }
 }

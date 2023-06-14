@@ -1,0 +1,40 @@
+<h2 style="text-align: center;">Поиск и фильтрация</h2>
+<div class="search">
+  <div class="search-wrapper">
+    <input type="text" [(ngModel)]="descriptionFilter" placeholder="Искать по описанию"/>
+    <button 
+      (click)="filterByDescription.emit(descriptionFilter.trim())"
+      type="button"
+    >
+      Применить
+    </button>
+  </div>
+  
+
+  <div class="btn-wrapper">
+    <button 
+      type="button" 
+      (click)="changeStatusFilter('all')"
+      class="btn"
+      [class.active]="statusFilter == 'all'"
+    >Все</button>
+    <button 
+      type="button" 
+      (click)="changeStatusFilter('done')"
+      class="btn"
+      [class.active]="statusFilter == 'done'"
+    >Выполненные</button>
+    <button 
+      type="button" 
+      (click)="changeStatusFilter('common')"
+      class="btn"
+      [class.active]="statusFilter == 'common'"
+    >Обычные</button>
+    <button 
+      type="button" 
+      (click)="changeStatusFilter('important')"
+      class="btn"
+      [class.active]="statusFilter == 'important'"
+    >Важные</button>
+  </div>
+</div>

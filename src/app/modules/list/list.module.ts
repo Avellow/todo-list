@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ListComponent } from './list.component';
 import { TaskModule } from '../task/task.module';
 import { TaskAddingModule } from '../task-adding/task-adding.module';
+import { SearchModule } from '../search/search.module';
 
 
 
@@ -13,7 +14,8 @@ import { TaskAddingModule } from '../task-adding/task-adding.module';
   imports: [
     CommonModule,
     TaskModule,
-    TaskAddingModule
+    TaskAddingModule,
+    SearchModule
   ],
   exports: [ListComponent]
 })

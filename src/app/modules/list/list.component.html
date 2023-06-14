@@ -1,7 +1,18 @@
 <app-task-adding (addTask)="handleTaskAdd($event)"></app-task-adding>
 <hr/>
+<app-search 
+  (filterByDescription)="filterByDescription($event)"
+  (filterByStatus)="filterByStatus($event)"
+></app-search>
+<hr/>
 <h3 class="title">Список задач</h3>
-<ul class="list">
+
+<p 
+  *ngIf="taskService.tasks.length == 0"
+  class="empty"
+>Список задач пуст</p>
+
+<ul class="list" *ngIf="taskService.tasks.length">
   <li *ngFor="let task of taskService.tasks" class="item">
     <app-task 
       [task]="task" 

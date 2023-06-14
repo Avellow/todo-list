@@ -1,10 +1,16 @@
 import { Injectable } from '@angular/core';
 
 export type TaskStatus = 'common' | 'important' | 'done';
+export type StatusFilter = TaskStatus | 'all';
 
 export interface ITask {
   status: TaskStatus;
   description: string;
+}
+
+export interface IFilter {
+  byStatus: StatusFilter;
+  byDescription: string;
 }
 
 const initialTasks: ITask[] = [
@@ -18,11 +24,26 @@ const initialTasks: ITask[] = [
 })
 export class TaskService {
   private _tasks: ITask[] = initialTasks;
+  
+  filter: IFilter = {
+    byDescription: '',
+    byStatus: 'all'
+  }
 
   constructor() { }
 
   get tasks(): ITask[] {
-    return this._tasks;
+    if (this.filter.byStatus == 'all') {
+      return this
+        ._tasks
+        .filter(task => task.description.includes(this.filter.byDescription));
+    }
+
+    return this
+      ._tasks
+      .filter(task => task.description.includes(this.filter.byDescription)
+        && task.status == this.filter.byStatus
+      )
   }
 
   addTask(task: ITask): void {
@@ -39,5 +60,9 @@ export class TaskService {
     if (task) {
       task.status = newStatus;
     }
+  }
+
+  changeFilter(filter: Partial<IFilter>) {
+    this.filter = { ...this.filter, ...filter };
   }
 }

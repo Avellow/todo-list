@@ -1,0 +1,35 @@
+.search {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.search-wrapper {
+  margin: 0 auto;
+  display: flex;
+  gap: 5px;
+
+  input {
+    padding: 10px;
+  }
+}
+
+.btn-wrapper {
+  margin: 0 auto;
+  display: flex;
+  gap: 4px;
+}
+
+.btn {
+  min-width: 100px;
+  height: 40px;
+  background: none;
+  border: 1px solid black;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.active {
+  background-color: rgb(83, 231, 236);
+  border-color: rgb(243, 140, 140);
+}
