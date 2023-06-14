@@ -1,0 +1,18 @@
+<div 
+  class="task" 
+  [class.done]="task.status == 'done'"
+  [class.important]="task.status == 'important'"
+>
+  <input
+    type="checkbox" 
+    [id]="task.description" 
+    (change)="handleCheck()" 
+    [checked]="task.status == 'done'" 
+  />
+  
+  <label [for]="task.description">
+    {{task.description}}
+  </label>
+
+  <button class="btn" (click)="remove.emit()">Delete</button>
+</div>
