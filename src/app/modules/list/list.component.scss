@@ -10,8 +10,23 @@
   gap: 10px;
 }
 
+.item {
+  display: flex;
+  gap: 15px;
+}
+
 .title {
   text-align: center;
+}
+
+.btn-delete {
+  border: 1px solid black;
+  background-color: rgb(247, 157, 157);
+  cursor: pointer;
+}
+
+.btn-delete:hover {
+  background-color: red;
 }
 
 .empty {

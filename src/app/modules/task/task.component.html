@@ -14,5 +14,10 @@
     {{task.description}}
   </label>
 
-  <button class="btn" (click)="remove.emit()">Delete</button>
+  <!-- переключает важность задачи -->
+  <button 
+    (click)="changeImportance.emit()"
+    class="btn"
+    [class.active]="task.status == 'important'"
+  >!</button>
 </div>

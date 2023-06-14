@@ -1,5 +1,5 @@
 import { Component, Output } from '@angular/core';
-import { IFilter, ITask, StatusFilter, TaskService } from 'src/app/services/task.service';
+import { ITask, StatusFilter, TaskService, TaskStatus } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-list',
@@ -14,21 +14,21 @@ export class ListComponent {
     this.taskService.removeTask(taskToRemove);
   }
 
-  handleTaskCheck(task: ITask): void {
-    task.status == 'done' 
+  handleChangeStatus(task: ITask, status: TaskStatus): void {
+    task.status == status 
       ? this.taskService.changeStatus(task, 'common')
-      : this.taskService.changeStatus(task, 'done')
+      : this.taskService.changeStatus(task, status)
   }
 
   handleTaskAdd(task: ITask): void {
     this.taskService.addTask(task);
   }
 
-  filterByDescription(desc: string) {
+  filterByDescription(desc: string): void {
     this.taskService.changeFilter({ byDescription: desc });
   }
 
-  filterByStatus(status: StatusFilter) {
+  filterByStatus(status: StatusFilter): void {
     this.taskService.changeFilter({ byStatus: status });
   }
 }

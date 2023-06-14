@@ -17,7 +17,9 @@
     <app-task 
       [task]="task" 
       (remove)="remove(task)" 
-      (check)="handleTaskCheck(task)"
+      (check)="handleChangeStatus(task, 'done')"
+      (changeImportance)="handleChangeStatus(task, 'important')"
       ></app-task>
+      <button class="btn-delete" (click)="remove(task)">X</button>
   </li>
 </ul>
