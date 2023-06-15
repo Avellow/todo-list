@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { ITask, TaskStatus } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-task-adding',
   templateUrl: './task-adding.component.html',
-  styleUrls: ['./task-adding.component.scss']
+  styleUrls: ['./task-adding.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TaskAddingComponent {
   

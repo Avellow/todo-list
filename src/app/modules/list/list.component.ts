@@ -1,10 +1,11 @@
-import { Component, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Output } from '@angular/core';
 import { ITask, StatusFilter, TaskService, TaskStatus } from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ListComponent {
   

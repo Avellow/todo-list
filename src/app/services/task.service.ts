@@ -47,7 +47,7 @@ export class TaskService {
   }
 
   addTask(task: ITask): void {
-    this._tasks.push(task);
+    this._tasks = [...this._tasks, task];
   }
 
   removeTask(taskToRemove: ITask): void {
