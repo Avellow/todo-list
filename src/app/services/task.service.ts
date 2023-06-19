@@ -61,8 +61,4 @@ export class TaskService {
       task.status = newStatus;
     }
   }
-
-  changeFilter(filter: Partial<IFilter>) {
-    this.filter = { ...this.filter, ...filter };
-  }
 }

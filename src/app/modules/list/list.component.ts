@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Output } from '@angular/core';
 import { ITask, StatusFilter, TaskService, TaskStatus } from 'src/app/services/task.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { ITask, StatusFilter, TaskService, TaskStatus } from 'src/app/services/t
 })
 export class ListComponent {
   
-  constructor(public taskService: TaskService) {}
+  constructor(public taskService: TaskService, private cdr: ChangeDetectorRef) {}
 
   remove(taskToRemove: ITask) {
     this.taskService.removeTask(taskToRemove);
@@ -26,10 +26,12 @@ export class ListComponent {
   }
 
   filterByDescription(desc: string): void {
-    this.taskService.changeFilter({ byDescription: desc });
+    this.taskService.filter.byDescription = desc;
+    this.cdr.detectChanges();
   }
 
   filterByStatus(status: StatusFilter): void {
-    this.taskService.changeFilter({ byStatus: status });
+    this.taskService.filter.byStatus = status;
+    this.cdr.detectChanges();
   }
 }
