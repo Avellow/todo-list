@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { ListModule } from './modules/list/list.module';
+import { AppRoutingModule } from './app-routing.module';
 
 
 @NgModule({
@@ -11,7 +12,8 @@ import { ListModule } from './modules/list/list.module';
   ],
   imports: [
     BrowserModule,
-    ListModule
+    ListModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
