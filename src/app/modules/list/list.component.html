@@ -1,25 +1,17 @@
 <app-task-adding (addTask)="handleTaskAdd($event)"></app-task-adding>
-<hr/>
-<app-search 
-  (filterByDescription)="filterByDescription($event)"
-  (filterByStatus)="filterByStatus($event)"
-></app-search>
-<hr/>
+<hr />
+<app-search (filterByDescription)="filterByDescription($event)" (filterByStatus)="filterByStatus($event)"></app-search>
+<hr />
 <h3 class="title">Список задач</h3>
 
-<p 
-  *ngIf="taskService.tasks.length == 0"
-  class="empty"
->Список задач пуст</p>
+<p *ngIf="isLoading">Loading...</p>
+
+<p *ngIf="taskService.tasks.length == 0" class="empty">Список задач пуст</p>
 
 <ul class="list" *ngIf="taskService.tasks.length">
   <li *ngFor="let task of taskService.tasks" class="item">
-    <app-task 
-      [task]="task" 
-      (remove)="remove(task)" 
-      (check)="handleChangeStatus(task, 'done')"
-      (changeImportance)="handleChangeStatus(task, 'important')"
-      ></app-task>
-      <button class="btn-delete" (click)="remove(task)">X</button>
+    <app-task [task]="task" (remove)="remove(task)" (check)="handleChangeStatus(task, 'done')"
+      (changeImportance)="handleChangeStatus(task, 'important')"></app-task>
+    <button class="btn-delete" (click)="remove(task)">X</button>
   </li>
 </ul>

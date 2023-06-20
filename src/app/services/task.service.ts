@@ -1,4 +1,6 @@
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Subscriber, Subscription, catchError, finalize, map, throwError } from 'rxjs';
 
 export type TaskStatus = 'common' | 'important' | 'done';
 export type StatusFilter = TaskStatus | 'all';
@@ -13,24 +15,27 @@ export interface IFilter {
   byDescription: string;
 }
 
-const initialTasks: ITask[] = [
-  { status: 'common', description: 'first task'},
-  { status: 'done', description: 'second task'},
-  { status: 'important', description: 'third task'},
-] 
-
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  private _tasks: ITask[] = initialTasks;
-  
+  private _tasks: ITask[] = [];
+  public isLoading = false;
+
   filter: IFilter = {
     byDescription: '',
     byStatus: 'all'
   }
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  loadTasks() {
+    return this.http.get<ITask[]>('../../assets/todo-list.json')
+      .pipe(
+        catchError((errorRes: HttpErrorResponse) => throwError(() => errorRes.message)),
+        map((data) => this._tasks = data),
+      )
+  }
 
   get tasks(): ITask[] {
     if (this.filter.byStatus == 'all') {

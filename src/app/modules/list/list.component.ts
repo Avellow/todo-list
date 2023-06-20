@@ -1,5 +1,17 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Output } from '@angular/core';
-import { ITask, StatusFilter, TaskService, TaskStatus } from 'src/app/services/task.service';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
+import { Observable } from 'rxjs';
+
+import {
+  ITask,
+  StatusFilter,
+  TaskService,
+  TaskStatus
+} from 'src/app/services/task.service';
 
 @Component({
   selector: 'app-list',
@@ -7,16 +19,26 @@ import { ITask, StatusFilter, TaskService, TaskStatus } from 'src/app/services/t
   styleUrls: ['./list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ListComponent {
-  
-  constructor(public taskService: TaskService, private cdr: ChangeDetectorRef) {}
+export class ListComponent implements OnInit {
+  isLoading = false;
+
+  constructor(public taskService: TaskService, private cdr: ChangeDetectorRef) { }
+
+  ngOnInit(): void {
+    this.taskService
+      .loadTasks()
+      .subscribe({
+        next: () => { this.isLoading = false; this.cdr.detectChanges() },
+        error: (e) => { alert(JSON.stringify(e)); }
+      })
+  }
 
   remove(taskToRemove: ITask) {
     this.taskService.removeTask(taskToRemove);
   }
 
   handleChangeStatus(task: ITask, status: TaskStatus): void {
-    task.status == status 
+    task.status == status
       ? this.taskService.changeStatus(task, 'common')
       : this.taskService.changeStatus(task, status)
   }
