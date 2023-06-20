@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -8,11 +8,17 @@ import { Router } from '@angular/router';
   templateUrl: './login-page.component.html',
   styleUrls: ['./login-page.component.scss']
 })
-export class LoginPageComponent {
+export class LoginPageComponent implements OnInit {
 
   isLoading = false;
 
   constructor(private authService: AuthService, private router: Router) { }
+
+  ngOnInit(): void {
+    if (this.authService.user) {
+      this.router.navigate(['']);
+    }
+  }
 
   onLogin(form: NgForm) {
 
@@ -29,7 +35,7 @@ export class LoginPageComponent {
         next: (res) => {
           console.log(res);
           this.isLoading = false;
-          this.router.navigate(['todo-list'])
+          this.router.navigate([''])
         },
         error: (e) => {
           this.isLoading = false;

@@ -81,6 +81,10 @@ export class AuthService {
     }
   }
 
+  public get token(): string | null {
+    return localStorage.getItem(env.LC_TOKEN_KEY);
+  }
+
   private handleError(errorRes: HttpErrorResponse) {
     let error = errorRes.error ? errorRes.error : 'unknown error';
     let errorMsg: string;
