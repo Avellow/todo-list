@@ -5,7 +5,8 @@ import { AppComponent } from './app.component';
 import { ListModule } from './modules/list/list.module';
 import { AppRoutingModule } from './app-routing.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { AboutPageComponent } from './pages/about-page/about-page.component';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -16,7 +17,9 @@ import { AboutPageComponent } from './pages/about-page/about-page.component';
     BrowserModule,
     ListModule,
     AppRoutingModule,
-    NgbModule
+    NgbModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
