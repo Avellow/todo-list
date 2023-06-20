@@ -3,6 +3,7 @@ import { environment as env } from 'src/environments/environment.development';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { catchError, map, throwError } from 'rxjs';
+import { PagesPathEnum } from '../pages/types';
 
 export interface AuthResponseData {
   token: string;
@@ -53,7 +54,7 @@ export class AuthService {
 
   logout(): void {
     localStorage.removeItem(env.LC_TOKEN_KEY);
-    this.routes.navigate(['login']);
+    this.routes.navigate([PagesPathEnum.LOGIN]);
   }
 
   parseJwt(token: string) {

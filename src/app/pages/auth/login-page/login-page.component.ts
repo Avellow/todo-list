@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/services/auth.service';
 import { NgForm } from '@angular/forms';
 import { Router } from '@angular/router';
+import { PagesPathEnum } from '../../types';
 
 @Component({
   selector: 'app-login',
@@ -16,7 +17,7 @@ export class LoginPageComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.authService.user) {
-      this.router.navigate(['']);
+      this.router.navigate([PagesPathEnum.TODOLIST]);
     }
   }
 
@@ -35,7 +36,7 @@ export class LoginPageComponent implements OnInit {
         next: (res) => {
           console.log(res);
           this.isLoading = false;
-          this.router.navigate([''])
+          this.router.navigate([PagesPathEnum.TODOLIST]);
         },
         error: (e) => {
           this.isLoading = false;

@@ -7,6 +7,7 @@ import {
   UrlTree,
 } from '@angular/router';
 import { Observable } from 'rxjs';
+import { PagesPathEnum } from 'src/app/pages/types';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Injectable({
@@ -26,7 +27,7 @@ export class AuthGuard implements CanActivate {
     if (this.authService.user) {
       return true;
     } else {
-      this.router.navigate(['login']);
+      this.router.navigate([PagesPathEnum.LOGIN]);
       return false;
     }
   }
