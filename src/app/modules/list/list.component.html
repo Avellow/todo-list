@@ -4,14 +4,23 @@
 <hr />
 <h3 class="title">Список задач</h3>
 
-<p *ngIf="isLoading">Loading...</p>
 
-<p *ngIf="taskService.tasks.length == 0" class="empty">Список задач пуст</p>
 
-<ul class="list" *ngIf="taskService.tasks.length">
-  <li *ngFor="let task of taskService.tasks" class="item">
-    <app-task [task]="task" (remove)="remove(task)" (check)="handleChangeStatus(task, 'done')"
-      (changeImportance)="handleChangeStatus(task, 'important')"></app-task>
-    <button class="btn-delete" (click)="remove(task)">X</button>
-  </li>
-</ul>
+<div *ngIf="!isLoading; else loader">
+  <ul class="list" *ngIf="taskService.tasks.length; else empty">
+    <li *ngFor="let task of taskService.tasks" class="item">
+      <app-task [task]="task" (remove)="remove(task)" (check)="handleChangeStatus(task, 'done')"
+        (changeImportance)="handleChangeStatus(task, 'important')"></app-task>
+      <button class="btn-delete" (click)="remove(task)">X</button>
+    </li>
+  </ul>
+</div>
+
+
+<ng-template #empty>
+  <p class="empty">Список задач пуст</p>
+</ng-template>
+
+<ng-template #loader>
+  <p>Loading...</p>
+</ng-template>
