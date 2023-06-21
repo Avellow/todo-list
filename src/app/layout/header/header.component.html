@@ -1,0 +1,21 @@
+<div class="container">
+  <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
+    <ul class="nav nav-pills me-md-auto">
+      <li class="nav-item">
+        <a [routerLink]="paths.ABOUT" class="nav-link" routerLinkActive="active">Home</a>
+      </li>
+      <li class="nav-item" *ngIf="authSerivce.user">
+        <a class="nav-link" routerLinkActive="active" [routerLink]="paths.TODOLIST"
+          [routerLinkActiveOptions]="{ exact: true }">Tasks</a>
+      </li>
+      <li class="nav-item" *ngIf="!authSerivce.user">
+        <a [routerLink]="paths.LOGIN" class="nav-link" routerLinkActive="active">Login</a>
+      </li>
+    </ul>
+    <div>
+      <button *ngIf="authSerivce.user" type="button" class="btn btn-primary"
+        (click)="authSerivce.logout()">Logout</button>
+    </div>
+  </header>
+</div>
+<router-outlet></router-outlet>

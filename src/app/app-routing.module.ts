@@ -6,11 +6,18 @@ import { LoginPageModule } from './pages/auth/login-page/login-page.module';
 import { ListComponent } from './modules/list/list.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 import { PagesPathEnum } from './pages/types';
+import { HeaderComponent } from './layout/header/header.component';
 
 const routes: Routes = [
-  { path: PagesPathEnum.LOGIN, component: LoginPageComponent },
-  { path: PagesPathEnum.ABOUT, component: AboutPageComponent },
-  { path: PagesPathEnum.TODOLIST, component: ListComponent, canActivate: [AuthGuard], pathMatch: 'full' }
+  {
+    path: '',
+    component: HeaderComponent,
+    children: [
+      { path: PagesPathEnum.LOGIN, component: LoginPageComponent },
+      { path: PagesPathEnum.ABOUT, component: AboutPageComponent },
+      { path: PagesPathEnum.TODOLIST, component: ListComponent, canActivate: [AuthGuard], pathMatch: 'full' }
+    ]
+  },
 ]
 
 @NgModule({
